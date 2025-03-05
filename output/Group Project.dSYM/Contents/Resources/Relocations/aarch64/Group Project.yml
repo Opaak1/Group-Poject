@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/yannis/Desktop/Github/CSCGroupProject/Group-Project/output/Group Project'
+relocations:     []
+...
