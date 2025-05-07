@@ -59,15 +59,17 @@ double calculateCourseAverage(Student s) {
     double labAvg = findAverageLabScore(s);            
     double hwAvg = findAverageHWScore(s);         
     double quizAvg = findAverageQuizScore(s);         
-    double attendanceScore = s.attendance;                 
+    double attendanceScore = s.attendance;
+    double group = s.groupWork;                 
 
     double courseAverage =
-        (labAvg * 10) * 0.15 +
-        (hwAvg * 10) * 0.15 +
-        quizAvg * 0.15 +
-        ((s.groupWork / 10.0 * 100 + s.midterm) / 2.0) * 0.20 +
-        s.finalExam * 0.20 +
-        (attendanceScore * 10) * 0.15; 
+        (attendanceScore / 10.0) * 10 +
+        (labAvg / 10.0) * 15 + 
+        (hwAvg / 10.0) * 15 +
+        (quizAvg / 100.0) * 15 +
+        (group / 10.0) * 5 +
+        (s.midterm / 100.0) * 20 +
+        (s.finalExam / 100.0) * 20;
 
     return courseAverage;
 }
@@ -88,7 +90,7 @@ string calculateLetterGrade(Student s){
 }
 
 int main() {
-    ifstream fin("gradesIn.txt");
+    ifstream fin("/Users/yannis/Documents/projectFiles/gradesIn.txt");
     if (!fin) {
         cerr << "gradeIn file failed to open" << endl; //if this fails to open change filepath or check your file name
         return 1;
@@ -118,7 +120,7 @@ int main() {
 
     fin.close();
 
-    ofstream fout("gradesOut1.txt");
+    ofstream fout("/Users/yannis/Documents/projectFiles/gradesOut1.txt");
     fout << fixed << setprecision(2);  //2 decimal places
     for (int i = 0; i < studentCount; i++) {
         fout << students[i].first << " " << students[i].last << endl;
@@ -133,7 +135,7 @@ int main() {
     }
     fout.close();
 
-    ofstream fout2("gradesOut2.txt");
+    ofstream fout2("/Users/yannis/Documents/projectFiles/gradesOut2.txt");
     fout2 << fixed << setprecision(2);  
     double totalCourseAvg = 0;
     for (int i = 0; i < studentCount; i++) {
