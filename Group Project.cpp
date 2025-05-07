@@ -59,15 +59,17 @@ double calculateCourseAverage(Student s) {
     double labAvg = findAverageLabScore(s);            
     double hwAvg = findAverageHWScore(s);         
     double quizAvg = findAverageQuizScore(s);         
-    double attendanceScore = s.attendance;                 
+    double attendanceScore = s.attendance;
+    double group = s.groupWork;                 
 
     double courseAverage =
-        (labAvg * 10) * 0.15 +
-        (hwAvg * 10) * 0.15 +
-        quizAvg * 0.15 +
-        ((s.groupWork / 10.0 * 100 + s.midterm) / 2.0) * 0.20 +
-        s.finalExam * 0.20 +
-        (attendanceScore * 10) * 0.15; 
+        (attendanceScore / 10.0) * 10 + //attendance
+        (labAvg / 10.0) * 15 +          //lab
+        (hwAvg / 10.0) * 15 +           //hw
+        (quizAvg / 100.0) * 15 +        //qz
+        (group / 10.0) * 5 +            //group
+        (s.midterm / 100.0) * 20 +      //mid 
+        (s.finalExam / 100.0) * 20;     //final
 
     return courseAverage;
 }
